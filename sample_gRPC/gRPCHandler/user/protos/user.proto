@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package protos;
+option go_package = "./;protos";
+
+message RequestByID {
+  int32 id = 1;
+}
+
+message RequestByIDs {
+  repeated int32 ids = 1;
+}
+
+message RespUser {
+  User user = 1;
+}
+
+message RespUsers {
+  repeated User users = 1;
+}
+
+message User {
+  int32 id = 1;
+  string fname = 2;
+  string city = 3;
+  int32 phone = 4;
+  float height = 5;
+  bool married = 6;
+}
+
+service UserService {
+  rpc GetUserByID(RequestByID) returns (RespUser) {}
+  rpc GetUsersByIDs(RequestByIDs) returns (RespUsers) {}
+}
